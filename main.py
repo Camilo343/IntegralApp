@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk  # Importa ttk
 from sympy import *
-
+#pollito asado
+#cualquier cosa 
 def calcular_integral():
     f = entrada_funcion.get()
     x = symbols('x')
