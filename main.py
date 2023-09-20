@@ -2,9 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 from sympy import symbols, integrate, simplify, latex, pretty
 
-
-# Resto del código...
-
 # Función para calcular la integral
 def calcular_integral():
     f = entrada_funcion.get()  # Obtiene la función ingresada por el usuario
