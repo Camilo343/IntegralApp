@@ -1,21 +1,28 @@
 import tkinter as tk
-from tkinter import ttk  # Importa ttk
-from sympy import *
+from tkinter import ttk
+from sympy import symbols, integrate, simplify, latex, pretty
 
+
+# Resto del código...
+
+# Función para calcular la integral
 def calcular_integral():
-    f = entrada_funcion.get()
-    x = symbols('x')
+    f = entrada_funcion.get()  # Obtiene la función ingresada por el usuario
+    x = symbols('x')  # Define el símbolo para la variable de integración
     try:
-        res = integrate(f, x)
-        resultado.config(text=f'La respuesta es {res}')
+        res = integrate(f, x)  # Calcula la integral
+        pretty_res = pretty(res, use_unicode=True)  # Formatea el resultado de manera atractiva
+        resultado.config(text=f'{pretty_res}')  # Muestra la respuesta en la interfaz
     except:
-        resultado.config(text='Error en la función')
+        resultado.config(text='Error en la función')  # Manejo de errores si la función no es válida
 
+# Función para agregar un caracter al campo de entrada
 def agregar_caracter(caracter):
-    entrada_funcion.insert(tk.END, caracter)
+    entrada_funcion.insert(tk.END, caracter)  # Inserta el caracter en el campo de entrada
 
+# Función para borrar un caracter del campo de entrada
 def borrar_caracter():
-    entrada_funcion.delete(len(entrada_funcion.get()) - 1, tk.END)
+    entrada_funcion.delete(len(entrada_funcion.get()) - 1, tk.END)  # Borra el último caracter del campo de entrada
 
 # Crear una ventana
 ventana = tk.Tk()
@@ -30,6 +37,10 @@ style.configure('TLabel', font=("Helvetica", 12))
 # Cuadro de entrada y resultado
 marco_principal = ttk.Frame(ventana)
 marco_principal.pack(padx=10, pady=10)
+
+# Símbolo de integral
+simbolo_integral = ttk.Label(marco_principal, text="∫", font=("Times", 24))
+simbolo_integral.grid(row=1, column=0, sticky=tk.E, padx=(0, 5))
 
 etiqueta_funcion = ttk.Label(marco_principal, text="Ingrese la función f(x):")
 etiqueta_funcion.grid(row=0, column=0, columnspan=5)
